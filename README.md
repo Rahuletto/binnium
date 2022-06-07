@@ -1,11 +1,19 @@
-<h2 style="font-size:2.5rem;" align="center"><a href="https://github.com/simply-develop/da-bin">Da-Bin.</a></h2>
+<h2 style="font-size:2.5rem;" align="center"><a href="https://github.com/simply-develop/binnium">Binnium</a></h2>
 
 <h3 align="center">A Fun little project made under 2 days</h3>
 
 <h2 align="center">Made by <a href="https://discord.gg/3JzDV9T5Fn">Rahuletto#0243</a></h2>
 
-This is an template to make a source bin like site. By yourself.
+<p align="center">This is an template to make a source bin like site. By yourself.</p>
 
+
+-------------------
+
+Fun Fact:
+- We came up with the word **Binnium** Because _Chromium_ powers Chrome.
+- **Binnium** (This template) powers the bin we made.
+
+------------------
 
 ## This project is licensed under [`CC BY 4.0`](https://creativecommons.org/licenses/by/4.0/)
 

@@ -1,5 +1,5 @@
 // ------------------------------------------
-// This is a fun project made under 3 days ;)
+// This is a fun project made under 2 days ;)
 // ------------------------------------------
 
 const express = require("express");
