@@ -1,0 +1,12 @@
+body, html {
+  padding: 5px;
+  user-select: none;
+}
+
+.CodeMirror {
+  font-size: 14px !important;
+  border-radius: 10px;
+  margin: 5px;
+  margin-top: 0px;
+  height: 85vh !important;
+}

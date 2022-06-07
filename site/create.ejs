@@ -1,0 +1,66 @@
+<!-- The page that Creates a Bin -->
+
+<head>
+  <!-- CodeMirror (or) PrismJS can be used to render the code -->
+
+  <!-- We are using CodeMirror -->
+  <script src="https://codemirror.net/lib/codemirror.js"></script>
+
+  <!-- Importing languages from codemirror -->
+  <script src="https://codemirror.net/mode/javascript/javascript.js"></script>
+
+  <link rel="stylesheet" href="https://codemirror.net/lib/codemirror.css">
+  
+</head>
+
+<form method="post">
+
+  <input placeholder="Title" name="title" class="title form"  ></input>
+  <input name="desc" placeholder="Description" class="desc"> </input>
+
+  <select  name="language" onchange="trigger()" id="lg">
+    <option value="text/javascript" selected>Javascript</option>
+    <option value="application/json">JSON</option>
+
+    <!-- Add More languages by reading CodeMirror's docs. -->
+  </select>
+
+  
+  <button onclick="sve()" type="submit" class="save">Save</button>
+
+
+  <div class="fname">
+   
+    <input style="width: 100%" placeholder="untitled" maxlength="18" name="filename"></input>
+  </div>
+
+  <textarea name="code" placeholder="" id="edit" ></textarea>
+
+  
+</form>
+
+<script>
+
+  let txtbx = document.getElementById('edit')
+
+  var editor = CodeMirror.fromTextArea(txtbx, {
+    lineNumbers: true,
+    mode: {
+      name: "javascript", json: true
+    }
+  });
+
+  editor.getDoc().setValue('');
+  editor.save()
+  
+function sve(){
+  let save = document.querySelector('.save')
+  save.disabled = true;
+}
+
+function trigger() {
+  let dp = document.querySelector('#lg').value
+  editor.setOption('mode', dp)
+}
+ 
+</script>

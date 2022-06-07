@@ -1,0 +1,79 @@
+<!-- The page that shows the bin -->
+
+
+<head>
+  <!-- CodeMirror (or) PrismJS can be used to render the code -->
+
+  <!-- We are using CodeMirror -->
+  <script src="https://codemirror.net/lib/codemirror.js"></script>
+
+  <!-- Importing languages from codemirror -->
+  <script src="https://codemirror.net/mode/javascript/javascript.js"></script>
+
+  <link rel="stylesheet" href="https://codemirror.net/lib/codemirror.css">
+  
+</head>
+
+<div>
+
+  <h2 name="title" class="title form"  ><%- data.title %></h2>
+  <h4 name="desc" class="desc"><%- data.desc %></h4>
+
+  <select  disabled name="language" id="lg">
+    <option value="<%- data.language %>" default>
+      <% 
+      let a = {
+        "text/javascript": "Javascript",
+        "application/json": "JSON",
+      };
+     %> <%= a[data.language] %>
+
+    </option>
+  </select>
+
+  
+  <button onclick="copy()">Copy Link</button>
+
+
+
+  <div class="fname">
+   
+    <h4 style="width: 100%" placeholder="untitled" maxlength="18" name="filename">
+      <%- data.filename || 'untitled' %>
+    </h4>
+  </div>
+
+  <textarea disabled name="code" placeholder="" id="edit" ></textarea>
+
+  
+</div>
+
+<script>
+function copy() {
+  let val = window.location.href;
+    const selBox = document.createElement('textarea');
+    selBox.style.position = 'none';
+    selBox.style.opacity = '0';
+    selBox.value = val;
+    document.body.appendChild(selBox);
+    selBox.focus();
+    selBox.select();
+    document.execCommand('copy');
+    document.body.removeChild(selBox);  
+}
+
+let txtbx = document.getElementById('edit')
+
+let editor = CodeMirror.fromTextArea(document.getElementById(txtbx), {
+    mode: "<% data.language || 'javascript' %>",
+    lineNumbers: true,
+    tabindex: 2,
+    lineWiseCopyCut: false,
+    readOnly: 'nocursor',
+    lineWrapping: true
+  })
+
+  let cd = `<%- data.code %>`
+  editor.getDoc().setValue( cd )
+
+</script>
