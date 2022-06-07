@@ -1,4 +1,4 @@
-<p align="center"><img align="center" style="margin-bottom:-6px" src="https://user-images.githubusercontent.com/71836991/172395719-d46d87ef-75b4-46ac-8079-38165d16be3d.png"></p>
+<p align="center"><img align="center" style="width: 60%" src="https://user-images.githubusercontent.com/71836991/172395719-d46d87ef-75b4-46ac-8079-38165d16be3d.png"></p>
 
 <h2 style="font-size:2.5rem;" align="center"><a href="https://github.com/simply-develop/binnium">Binnium</a></h2>
 
@@ -20,8 +20,8 @@ Fun Fact:
 
 ### You are free to:
 
-**Share** — copy and redistribute the material in any medium or format
-**Adapt** — remix, transform, and build upon the material
+- **Share** — copy and redistribute the material in any medium or format
+- **Adapt** — remix, transform, and build upon the material
 for any purpose, even commercially.
 
 ### Under the following terms:
