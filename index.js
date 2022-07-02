@@ -14,6 +14,10 @@ let model = require("./model.js");
 
 mongoose
   .connect(process.env.mongo)
+  .catch(() => {
+    console.log("Error connecting to mongodb");
+    process.exit(1);
+  })
   .then(() => console.log("Connected to mongodb"));
 
 // Using bodyParser
@@ -26,7 +30,6 @@ app.engine("html", ejs.renderFile);
 app.set("view engine", "html");
 
 app.use(express.static("./site"));
-
 
 // ----------------------------
 // All the Functions necessary
@@ -41,8 +44,7 @@ function renderTemplate(res, req, template, data = {}) {
     path.resolve(`${process.cwd()}${path.sep}site/${template}`),
     Object.assign(baseData, data)
   );
-};
-
+}
 
 // A Simple function to make an UID
 function makeid(length) {
@@ -62,7 +64,6 @@ function makeid(length) {
 app.get("/", (req, res) => {
   renderTemplate(res, req, "index.ejs");
 });
-
 
 app.get("/create", async (req, res) => {
   renderTemplate(res, req, "create.ejs");
@@ -94,16 +95,12 @@ app.post("/create", async (req, res) => {
 app.get("/file/:uid", async (req, res) => {
   let data = await model.findOne({ uid: req.params.uid });
 
-  if (!data)
-    return renderTemplate(
-      res,
-      req,
-      "error.ejs"
-    ); // Throw error if the file is not found.
+  if (!data) return renderTemplate(res, req, "error.ejs");
+  // Throw error if the file is not found.
   else renderTemplate(res, req, "file.ejs", { data: data });
 });
 
-let port = process.env.PORT || 3000
+let port = process.env.PORT || 3000;
 
 app.listen(port, () => {
   console.log(`Listening to PORT: ${port}`);
