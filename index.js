@@ -4,6 +4,8 @@
 
 const express = require("express");
 const app = express();
+const { nanoid } = require('nanoid');
+require('dotenv').config();
 const ejs = require("ejs");
 
 let path = require("path");
@@ -14,8 +16,9 @@ let model = require("./model.js");
 
 mongoose
   .connect(process.env.mongo)
-  .catch(() => {
+  .catch((err) => {
     console.log("Error connecting to mongodb");
+    console.log(err)
     process.exit(1);
   })
   .then(() => console.log("Connected to mongodb"));
@@ -46,16 +49,9 @@ function renderTemplate(res, req, template, data = {}) {
   );
 }
 
-// A Simple function to make an UID
+// A length of 12 makes takes 1 thousand years to have a 1% probability of collision
 function makeid(length) {
-  var result = "";
-  var characters =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  var charactersLength = characters.length;
-  for (var i = 0; i < length; i++) {
-    result += characters.charAt(Math.floor(Math.random() * charactersLength));
-  }
-  return result;
+  return nanoid(length)
 }
 
 // ----------------------------
@@ -73,7 +69,7 @@ app.get("/create", async (req, res) => {
 app.post("/create", async (req, res) => {
   if (req.body.code == "" || !req.body.code) return res.redirect("/create");
 
-  let id = makeid(8); // Create a special UID (8 characters)
+  let id = makeid(12); // Create a special UID (8 characters)
 
   let obj = new model({
     title: req.body.title || "Untitled",
