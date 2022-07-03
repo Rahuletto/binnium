@@ -2,24 +2,26 @@
 // This is a fun project made under 2 days ;)
 // ------------------------------------------
 
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
 const express = require("express");
 const app = express();
-const { nanoid } = require('nanoid');
-const  bodyParser = require("body-parser");
-require('dotenv').config();
+import { nanoid } from "nanoid";
+const bodyParser = require("body-parser");
+require("dotenv").config();
 const ejs = require("ejs");
 
 const path = require("path");
 
 // Mongoose
 const mongoose = require("mongoose");
-const model = require("./model.js");
+import { model } from "./model.js";
 
 mongoose
   .connect(process.env.mongo)
   .catch((err) => {
     console.log("Error connecting to mongodb");
-    console.log(err)
+    console.log(err);
     process.exit(1);
   })
   .then(() => console.log("Connected to mongodb"));
@@ -46,7 +48,7 @@ const renderTemplate = (res, req, template, data = {}) => {
     path.resolve(`${process.cwd()}${path.sep}site/${template}`),
     Object.assign(baseData, data)
   );
-}
+};
 
 // A length of 12 makes takes 1 thousand years to have a 1% probability of collision at a rate of 1000 ids per hour
 const makeid = (length) => (length ? nanoid(length) : nanoid(12));
@@ -64,11 +66,13 @@ app.get("/create", async (req, res) => {
 
 // POST request from the form to create bins/paste
 app.post("/create", async (req, res) => {
-  if (req.body.code == "" || !req.body.code) return res.redirect("/create");
+  if (req.body.code == "" || !req.body.code) {
+    return res.redirect("/create");
+  }
 
-  let id = makeid(12); // Create a special UID (8 characters)
+  const id = makeid(12); // Create a special UID (8 characters)
 
-  let obj = new model({
+  const obj = new model({
     title: req.body.title || "Untitled",
     desc: req.body.desc || "No Description",
     code: req.body.code
@@ -80,7 +84,7 @@ app.post("/create", async (req, res) => {
     filename: req.body.filename,
   });
 
-  await obj.save();
+  const result = await obj.save();
 
   res.redirect(`/file/${id}`);
 });

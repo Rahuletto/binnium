@@ -39,7 +39,7 @@
   
 </form>
 
-<script>
+<script type="module">
 
   let txtbx = document.getElementById('edit')
 
@@ -53,10 +53,24 @@
   editor.getDoc().setValue('');
   editor.save()
   
-function sve(){
+async function sve(){
   let save = document.querySelector('.save')
   save.disabled = true;
-}
+  
+  await fetch('/create', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      title: document.querySelector('.title').value,
+      desc: document.querySelector('.desc').value,
+      language: document.querySelector('#lg').value,
+      filename: document.querySelector('.fname input').value,
+      code: editor.getDoc().getValue()
+    })
+  })
+  }
 
 function trigger() {
   let dp = document.querySelector('#lg').value
