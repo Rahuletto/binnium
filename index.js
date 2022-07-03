@@ -5,14 +5,15 @@
 const express = require("express");
 const app = express();
 const { nanoid } = require('nanoid');
+const  bodyParser = require("body-parser");
 require('dotenv').config();
 const ejs = require("ejs");
 
-let path = require("path");
+const path = require("path");
 
 // Mongoose
-let mongoose = require("mongoose");
-let model = require("./model.js");
+const mongoose = require("mongoose");
+const model = require("./model.js");
 
 mongoose
   .connect(process.env.mongo)
@@ -24,8 +25,6 @@ mongoose
   .then(() => console.log("Connected to mongodb"));
 
 // Using bodyParser
-var bodyParser = require("body-parser");
-
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Set engine to EJS
@@ -39,7 +38,7 @@ app.use(express.static("./site"));
 // ----------------------------
 
 // A Simple function to render files
-function renderTemplate(res, req, template, data = {}) {
+const renderTemplate = (res, req, template, data = {}) => {
   const baseData = {
     path: req.path,
   };
@@ -49,10 +48,8 @@ function renderTemplate(res, req, template, data = {}) {
   );
 }
 
-// A length of 12 makes takes 1 thousand years to have a 1% probability of collision
-function makeid(length) {
-  return nanoid(length)
-}
+// A length of 12 makes takes 1 thousand years to have a 1% probability of collision at a rate of 1000 ids per hour
+const makeid = (length) => (length ? nanoid(length) : nanoid(12));
 
 // ----------------------------
 
@@ -96,7 +93,7 @@ app.get("/file/:uid", async (req, res) => {
   else renderTemplate(res, req, "file.ejs", { data: data });
 });
 
-let port = process.env.PORT || 3000;
+const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
   console.log(`Listening to PORT: ${port}`);
