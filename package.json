@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "This is an template to make a source bin like site. By yourself.",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,8 +12,10 @@
   "license": "CC BY 4.0",
   "dependencies": {
     "body-parser": "^1.20.0",
+    "dotenv": "^16.0.1",
     "ejs": "^3.1.8",
     "express": "^4.18.1",
-    "mongoose": "^6.3.4"
+    "mongoose": "^6.3.4",
+    "nanoid": "^4.0.0"
   }
 }

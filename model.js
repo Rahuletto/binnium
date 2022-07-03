@@ -1,12 +1,14 @@
-let mongoose = require('mongoose')
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
+let mongoose = require("mongoose");
 
-let model = new mongoose.Schema({
-  uid: 'string',
-  title: 'string',
+let models = new mongoose.Schema({
+  uid: "string",
+  title: "string",
   desc: "string",
   code: "string",
   language: "string",
-  filename: "string"
-})
+  filename: "string",
+});
 
-module.exports = mongoose.model('binnium', model)
+export const model = mongoose.model("binnium", models);
