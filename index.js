@@ -92,6 +92,8 @@ app.post("/create", async (req, res) => {
 app.get("/file/:uid", async (req, res) => {
   let data = await model.findOne({ uid: req.params.uid });
 
+  console.log(data);
+
   if (!data) return renderTemplate(res, req, "error.ejs");
   // Throw error if the file is not found.
   else renderTemplate(res, req, "file.ejs", { data: data });

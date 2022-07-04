@@ -62,9 +62,7 @@ function copy() {
     document.body.removeChild(selBox);  
 }
 
-let txtbx = document.getElementById('edit')
-
-let editor = CodeMirror.fromTextArea(document.getElementById(txtbx), {
+let editor = CodeMirror.fromTextArea(document.getElementById('edit'), {
     mode: "<% data.language || 'javascript' %>",
     lineNumbers: true,
     tabindex: 2,
@@ -74,6 +72,7 @@ let editor = CodeMirror.fromTextArea(document.getElementById(txtbx), {
   })
 
   let cd = `<%- data.code %>`
+  console.log(cd)
   editor.getDoc().setValue( cd )
 
 </script>
