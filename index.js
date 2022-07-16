@@ -76,9 +76,10 @@ app.post('/create', async (req, res) => {
     title: req.body.title || 'Untitled',
     desc: req.body.desc || 'No Description',
     code: req.body.code
-      .replaceAll("'", `\'`)
-      .replaceAll('"', `\"`)
-      .replaceAll("`", `\``), // Escape some characters
+      .replaceAll("'", `\\'`)
+      .replaceAll('"', `\\"`)
+      .replaceAll("`", `\\``), // Escape some characters
+
     uid: id,
     language: req.body.language,
     filename: req.body.filename
@@ -94,7 +95,15 @@ app.get('/file/:uid', async (req, res) => {
 
   if (!data) return renderTemplate(res, req, 'error.ejs')
   // Throw error if the file is not found.
-  else renderTemplate(res, req, 'file.ejs', { data })
+  else {
+    data.code = data.code
+      .replaceAll("'", `\\'`)
+      .replaceAll('"', `\\"`)
+      .replaceAll("`", `\\``) // Supporting legacy bins (old bins)
+      
+      
+    renderTemplate(res, req, 'file.ejs', { data })
+  }
 })
 
 const port = process.env.PORT || 3000
