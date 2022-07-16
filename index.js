@@ -78,7 +78,7 @@ app.post('/create', async (req, res) => {
     code: req.body.code
       .replaceAll("'", `\\'`)
       .replaceAll('"', `\\"`)
-      .replaceAll("`", `\\``), // Escape some characters
+      .replaceAll("`", '\\`'), // Escape some characters
 
     uid: id,
     language: req.body.language,
@@ -99,7 +99,7 @@ app.get('/file/:uid', async (req, res) => {
     data.code = data.code
       .replaceAll("'", `\\'`)
       .replaceAll('"', `\\"`)
-      .replaceAll("`", `\\``) // Supporting legacy bins (old bins)
+      .replaceAll("`", '\\`') // Supporting legacy bins (old bins)
       
       
     renderTemplate(res, req, 'file.ejs', { data })
