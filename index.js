@@ -76,9 +76,9 @@ app.post('/create', async (req, res) => {
     title: req.body.title || 'Untitled',
     desc: req.body.desc || 'No Description',
     code: req.body.code
-      .replaceAll("'", '\'')
-      .replaceAll('"', '"')
-      .replaceAll('`', '`'), // Escape some characters
+      .replaceAll("'", `\'`)
+      .replaceAll('"', `\"`)
+      .replaceAll("`", `\``), // Escape some characters
     uid: id,
     language: req.body.language,
     filename: req.body.filename
