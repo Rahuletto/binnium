@@ -16,6 +16,16 @@ Fun Fact:
 
 ------------------
 
+# Instructions
+
+(This template does not come with a front end elements like Html/CSS)
+
+- Create a .env file just like .env.example and delete the .env.example
+- Get your mongoURI from [here](https://mongodb.com) and paste in the .env file
+- Run the project. Here we go.
+- If you need the site to be colorful, edit your site/`anyfile`.ejs and site/css/style.css
+
+------------------
 ## This project is licensed under [`CC BY 4.0`](https://creativecommons.org/licenses/by/4.0/)
 
 ### You are free to:
