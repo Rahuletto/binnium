@@ -10,6 +10,10 @@
 
 -------------------
 
+## This is v1. We made CodeBoard (also known as SimplyBin) open-source. But this is a template so you can make your own !
+
+--------------------
+
 Fun Fact:
 - We came up with the word **Binnium** Because _Chromium_ powers Chrome.
 - **Binnium** (This template) powers the bin we made.
